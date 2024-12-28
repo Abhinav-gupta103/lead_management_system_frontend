@@ -10,9 +10,10 @@ export const AuthProvider = ({ children }) => {
     setIsAuthenticated(!!token);
   }, []);
 
-  const signIn = (token) => {
+  const signIn = (token, callback) => {
     localStorage.setItem("jwtToken", token);
     setIsAuthenticated(true);
+    if (callback) callback();
   };
 
   const signOut = () => {

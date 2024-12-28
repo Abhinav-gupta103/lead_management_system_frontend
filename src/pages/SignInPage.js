@@ -43,17 +43,20 @@ const SignInPage = () => {
 
   return (
     <Container maxWidth="sm">
-      <Typography variant="h4" gutterBottom>
-        Sign In
-      </Typography>
-      {error && <Alert severity="error">{error}</Alert>}
       <Box
         component="form"
-        noValidate
-        autoComplete="off"
-        sx={{ mt: 3 }}
+        sx={{
+          mt: 8,
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
         onSubmit={handleSignIn}
       >
+        <Typography variant="h4" gutterBottom>
+          Sign In
+        </Typography>
+        {error && <Alert severity="error">{error}</Alert>}
         <TextField
           fullWidth
           label="Username"

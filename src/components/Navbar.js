@@ -12,7 +12,7 @@ const Navbar = () => {
         <Typography variant="h6" style={{ flexGrow: 1 }}>
           Lead Management System
         </Typography>
-        {isAuthenticated && (
+        {isAuthenticated ? (
           <>
             <Button color="inherit" component={Link} to="/">
               Restaurant Leads
@@ -23,6 +23,15 @@ const Navbar = () => {
             </Button>
             <Button color="inherit" onClick={signOut}>
               Logout
+            </Button>
+          </>
+        ) : (
+          <>
+            <Button color="inherit" component={Link} to="/login">
+              Sign In
+            </Button>
+            <Button color="inherit" component={Link} to="/sign-up">
+              Sign Up
             </Button>
           </>
         )}
