@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../Auth/AuthContext";
 import {
   Container,
-  TextField,
-  Button,
   Typography,
   Box,
+  TextField,
+  Button,
   Alert,
 } from "@mui/material";
 
@@ -13,13 +14,14 @@ const SignInPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
+  const { signIn } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSignIn = async (e) => {
     e.preventDefault();
     setError(null);
     try {
-      const response = await fetch("http://localhost:8080/api/signin", {
+      const response = await fetch("http://localhost:8080/api/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
@@ -31,8 +33,7 @@ const SignInPage = () => {
 
       const data = await response.json();
 
-      localStorage.setItem("jwtToken", data.jwtToken);
-      localStorage.setItem("username", data.username);
+      signIn(data.access_token);
 
       navigate("/");
     } catch (error) {
