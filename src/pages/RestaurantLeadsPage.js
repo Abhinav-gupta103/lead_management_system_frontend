@@ -44,9 +44,15 @@ const RestaurantLeadsPage = () => {
       headers: myHeaders,
     };
 
-    const response = await fetch("/api/leads", requestOptions);
-    const data = await response.json();
-    setLeads(data);
+    try {
+      const response = await fetch("/api/leads", requestOptions);
+      if (response.status === 200) {
+        const data = await response?.json();
+        setLeads(data);
+      }
+    } catch (error) {
+      console.error("An error occurred while fetching leads", error);
+    }
   };
 
   useEffect(() => {

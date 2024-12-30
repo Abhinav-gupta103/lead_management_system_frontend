@@ -23,8 +23,7 @@ const SignUpPage = () => {
 
   const handleSignUp = async () => {
     try {
-      // Replace with your actual sign-up logic
-      const response = await fetch("/api/signup", {
+      const response = await fetch("/api/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -70,7 +69,7 @@ const SignUpPage = () => {
         <TextField
           fullWidth
           label="First Name"
-          name="fristName"
+          name="firstName"
           value={formData.firstName}
           onChange={handleChange}
           margin="normal"
